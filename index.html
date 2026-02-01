@@ -6,11 +6,10 @@
 <title>Sanika ❤️</title>
 
 <style>
-/* ===== BACKGROUND ===== */
 body {
     margin: 0;
     height: 100vh;
-    background: #7a7a7a; /* keep as-is (your background image overlay working) */
+    background: #7a7a7a;
     overflow: hidden;
     font-family: Arial, sans-serif;
     display: flex;
@@ -18,7 +17,6 @@ body {
     align-items: center;
 }
 
-/* ===== FLOATING HEARTS ===== */
 .heart {
     position: fixed;
     bottom: -20px;
@@ -33,7 +31,6 @@ body {
     to { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* ===== MAIN CARD ===== */
 .box {
     background: white;
     padding: 26px;
@@ -45,7 +42,6 @@ body {
     z-index: 10;
 }
 
-/* ===== MAIN TEXT ===== */
 .name {
     font-size: 26px;
     font-weight: bold;
@@ -59,7 +55,6 @@ body {
     margin-top: 10px;
 }
 
-/* ===== BUTTONS ===== */
 button {
     padding: 12px 24px;
     font-size: 18px;
@@ -74,12 +69,11 @@ button {
 }
 
 #noBtn {
-    background: #f44336;
-    color: white;
+    background: #f8b4c0;
+    color: #5a1a2c;
     position: fixed;
 }
 
-/* ===== POPUP ===== */
 #popup {
     display: none;
     position: fixed;
@@ -99,7 +93,6 @@ button {
     position: relative;
 }
 
-/* ===== POPUP IMAGE ===== */
 .popup-img {
     width: 150px;
     height: 150px;
@@ -109,7 +102,6 @@ button {
     margin-bottom: 10px;
 }
 
-/* ===== CLOSE BUTTON ===== */
 .close-btn {
     position: absolute;
     top: 12px;
@@ -123,7 +115,6 @@ button {
 
 <body>
 
-<!-- ===== HEARTS ===== -->
 <script>
 for (let i = 0; i < 18; i++) {
     let heart = document.createElement("div");
@@ -135,7 +126,6 @@ for (let i = 0; i < 18; i++) {
 }
 </script>
 
-<!-- ===== MAIN CONTENT ===== -->
 <div class="box">
     <div class="name">Sanika ❤️</div>
 
@@ -145,15 +135,20 @@ for (let i = 0; i < 18; i++) {
 
     <button id="yesBtn" onclick="showLove()">Yes 💖</button>
     <button id="noBtn" ontouchstart="moveNo()" onmouseover="moveNo()">No 💔</button>
+
+    <!-- 💖 ROMANTIC MESSAGE -->
+    <p id="romanticMsg" style="display:none; color:#b03060; font-size:14px; margin-top:8px;">
+        ഒന്ന് ചിന്തിച്ചോളൂ Sanika 🥺❤️ <br>
+        എന്റെ ഹൃദയം നിന്നെ തന്നെ തിരയുന്നു…
+    </p>
 </div>
 
-<!-- ===== POPUP ===== -->
 <div id="popup">
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">✖</span>
 
-    <!-- SANIKA PHOTO (ONLY HERE) -->
-    <img src="sanika.jpg" class="popup-img">
+    <!-- POPUP IMAGE -->
+    <img src="sanika.jpg?v=2" class="popup-img">
 
     <h2>Congratulations 🎉❤️</h2>
     <p>
@@ -164,18 +159,18 @@ for (let i = 0; i < 18; i++) {
   </div>
 </div>
 
-<!-- ===== LOGIC ===== -->
 <script>
 function moveNo() {
     const btn = document.getElementById("noBtn");
-    const yes = document.getElementById("yesBtn");
+    const msg = document.getElementById("romanticMsg");
 
-    const safeTop = yes.getBoundingClientRect().bottom + 20;
+    msg.style.display = "block";
+
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
 
     btn.style.left = Math.random() * maxX + "px";
-    btn.style.top = safeTop + Math.random() * (maxY - safeTop) + "px";
+    btn.style.top = Math.random() * maxY + "px";
 }
 
 function showLove() {
