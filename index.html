@@ -6,25 +6,16 @@
 <title>Sanika ❤️</title>
 
 <style>
-/* ===== BACKGROUND IMAGE ===== */
+/* ===== BACKGROUND ===== */
 body {
     margin: 0;
     height: 100vh;
-    background: url("background.jpg") no-repeat center center/cover;
+    background: #7a7a7a; /* keep as-is (your background image overlay working) */
     overflow: hidden;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* Dark overlay for readability */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 0;
 }
 
 /* ===== FLOATING HEARTS ===== */
@@ -35,7 +26,6 @@ body::before {
     font-size: 20px;
     animation: floatUp 6s linear infinite;
     pointer-events: none;
-    z-index: 1;
 }
 
 @keyframes floatUp {
@@ -45,39 +35,37 @@ body::before {
 
 /* ===== MAIN CARD ===== */
 .box {
-    background: rgba(255,255,255,0.95);
-    padding: 22px;
+    background: white;
+    padding: 26px;
     border-radius: 20px;
     width: 90%;
     max-width: 350px;
     text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    z-index: 5;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    z-index: 10;
 }
 
-/* ===== CIRCLE IMAGE (MAIN PAGE) ===== */
-.circle-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #ff4d6d;
-    margin-bottom: 10px;
+/* ===== MAIN TEXT ===== */
+.name {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a2980;
 }
 
-/* ===== TEXT ===== */
-h2 {
-    color: #0b3c5d;
+.question {
     font-size: 20px;
+    font-weight: bold;
+    color: #1a2980;
+    margin-top: 10px;
 }
 
 /* ===== BUTTONS ===== */
 button {
-    padding: 12px 22px;
+    padding: 12px 24px;
     font-size: 18px;
     border: none;
     border-radius: 10px;
-    margin: 10px;
+    margin: 12px;
 }
 
 #yesBtn {
@@ -126,7 +114,7 @@ button {
     position: absolute;
     top: 12px;
     right: 15px;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     color: #555;
 }
@@ -137,7 +125,7 @@ button {
 
 <!-- ===== HEARTS ===== -->
 <script>
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 18; i++) {
     let heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
@@ -147,19 +135,16 @@ for (let i = 0; i < 20; i++) {
 }
 </script>
 
-<!-- ===== MAIN CARD ===== -->
+<!-- ===== MAIN CONTENT ===== -->
 <div class="box">
+    <div class="name">Sanika ❤️</div>
 
-    <!-- CIRCLE IMAGE (ROMANTIC / SANIKA) -->
-    <img src="sanika.jpg" alt="Sanika" class="circle-img">
+    <div class="question">
+        Can you love me? 🥰
+    </div>
 
-    <h2>
-        Sanika ❤️ <br>
-        നിനക്ക് എന്നെ സ്നേഹിക്കാമോ? 🥰
-    </h2>
-
-    <button id="yesBtn" onclick="showLove()">അതെ 💖</button>
-    <button id="noBtn" ontouchstart="moveNo()" onmouseover="moveNo()">ഇല്ല 💔</button>
+    <button id="yesBtn" onclick="showLove()">Yes 💖</button>
+    <button id="noBtn" ontouchstart="moveNo()" onmouseover="moveNo()">No 💔</button>
 </div>
 
 <!-- ===== POPUP ===== -->
@@ -167,14 +152,14 @@ for (let i = 0; i < 20; i++) {
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">✖</span>
 
-    <!-- SANIKA PHOTO IN POPUP -->
+    <!-- SANIKA PHOTO (ONLY HERE) -->
     <img src="sanika.jpg" class="popup-img">
 
-    <h2>അഭിനന്ദനങ്ങൾ 🎉❤️</h2>
+    <h2>Congratulations 🎉❤️</h2>
     <p>
       Sanika 🥰 <br>
-      എന്റെ ഹൃദയം ഇനി നിന്റെതാണ് ❤️ <br>
-      ഞാൻ നിന്നെ വളരെ സ്നേഹിക്കുന്നു 💖
+      My heart is yours now ❤️ <br>
+      I love you so much 💖
     </p>
   </div>
 </div>
@@ -189,11 +174,8 @@ function moveNo() {
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
 
-    const x = Math.random() * maxX;
-    const y = safeTop + Math.random() * (maxY - safeTop);
-
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = safeTop + Math.random() * (maxY - safeTop) + "px";
 }
 
 function showLove() {
@@ -207,4 +189,3 @@ function closePopup() {
 
 </body>
 </html>
-
