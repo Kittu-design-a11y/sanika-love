@@ -6,16 +6,25 @@
 <title>Sanika ❤️</title>
 
 <style>
-/* ===== PAGE BACKGROUND ===== */
+/* ===== BACKGROUND IMAGE ===== */
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #1a2980, #26d0ce); /* Indigo-style */
+    background: url("background.jpg") no-repeat center center/cover;
     overflow: hidden;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Dark overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 0;
 }
 
 /* ===== FLOATING HEARTS ===== */
@@ -26,39 +35,28 @@ body {
     font-size: 20px;
     animation: floatUp 6s linear infinite;
     pointer-events: none;
+    z-index: 1;
 }
 
 @keyframes floatUp {
-    from {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100vh); opacity: 0; }
 }
 
 /* ===== MAIN CARD ===== */
 .box {
-    background: white;
+    background: rgba(255,255,255,0.95);
     padding: 22px;
     border-radius: 20px;
     width: 90%;
     max-width: 350px;
     text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    z-index: 5;
 }
 
-/* ===== INDIGO LOGO ===== */
-.logo {
-    width: 120px;
-    margin-bottom: 10px;
-}
-
-/* ===== PROFILE IMAGE ===== */
-.profile {
+/* ===== CIRCLE IMAGE (MAIN PAGE) ===== */
+.circle-img {
     width: 160px;
     height: 160px;
     border-radius: 50%;
@@ -69,7 +67,7 @@ body {
 
 /* ===== TEXT ===== */
 h2 {
-    color: #1a2980;
+    color: #0b3c5d;
     font-size: 20px;
 }
 
@@ -97,10 +95,7 @@ button {
 #popup {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.7);
     justify-content: center;
     align-items: center;
@@ -114,6 +109,16 @@ button {
     text-align: center;
     width: 85%;
     position: relative;
+}
+
+/* ===== POPUP IMAGE ===== */
+.popup-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff4d6d;
+    margin-bottom: 10px;
 }
 
 /* ===== CLOSE BUTTON ===== */
@@ -130,7 +135,7 @@ button {
 
 <body>
 
-<!-- ===== HEART GENERATOR ===== -->
+<!-- ===== HEARTS ===== -->
 <script>
 for (let i = 0; i < 20; i++) {
     let heart = document.createElement("div");
@@ -142,18 +147,14 @@ for (let i = 0; i < 20; i++) {
 }
 </script>
 
-<!-- ===== MAIN CONTENT ===== -->
+<!-- ===== MAIN CARD ===== -->
 <div class="box">
 
-    <!-- INDIGO LOGO -->
-    <img src="indigo-logo.png" alt="Indigo Logo" class="logo">
-
-    <!-- PROFILE IMAGE -->
-    <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Sanika" class="profile">
+    <!-- CIRCLE IMAGE (ROMANTIC / SANIKA) -->
+    <img src="circle.jpg" alt="Sanika" class="circle-img">
 
     <h2>
-        Sanika ❤️  
-        <br>
+        Sanika ❤️ <br>
         നിനക്ക് എന്നെ സ്നേഹിക്കാമോ? 🥰
     </h2>
 
@@ -165,6 +166,9 @@ for (let i = 0; i < 20; i++) {
 <div id="popup">
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">✖</span>
+
+    <!-- SANIKA PHOTO IN POPUP -->
+    <img src="sanika.jpg" class="popup-img">
 
     <h2>അഭിനന്ദനങ്ങൾ 🎉❤️</h2>
     <p>
@@ -179,12 +183,14 @@ for (let i = 0; i < 20; i++) {
 <script>
 function moveNo() {
     const btn = document.getElementById("noBtn");
+    const yes = document.getElementById("yesBtn");
 
+    const safeTop = yes.getBoundingClientRect().bottom + 20;
     const maxX = window.innerWidth - btn.offsetWidth;
     const maxY = window.innerHeight - btn.offsetHeight;
 
     const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const y = safeTop + Math.random() * (maxY - safeTop);
 
     btn.style.left = x + "px";
     btn.style.top = y + "px";
