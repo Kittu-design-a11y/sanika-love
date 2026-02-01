@@ -6,24 +6,26 @@
 <title>Sanika ❤️</title>
 
 <style>
+/* ===== PAGE BACKGROUND ===== */
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(#ff758c, #ff7eb3);
+    background: linear-gradient(135deg, #1a2980, #26d0ce); /* Indigo-style */
     overflow: hidden;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Floating hearts */
+/* ===== FLOATING HEARTS ===== */
 .heart {
     position: fixed;
     bottom: -20px;
     color: red;
     font-size: 20px;
     animation: floatUp 6s linear infinite;
+    pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -37,6 +39,7 @@ body {
     }
 }
 
+/* ===== MAIN CARD ===== */
 .box {
     background: white;
     padding: 22px;
@@ -48,7 +51,14 @@ body {
     z-index: 10;
 }
 
-.box img {
+/* ===== INDIGO LOGO ===== */
+.logo {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+/* ===== PROFILE IMAGE (OPTIONAL) ===== */
+.profile {
     width: 160px;
     height: 160px;
     border-radius: 50%;
@@ -57,11 +67,13 @@ body {
     margin-bottom: 10px;
 }
 
+/* ===== TEXT ===== */
 h2 {
-    color: #e91e63;
+    color: #1a2980;
     font-size: 20px;
 }
 
+/* ===== BUTTONS ===== */
 button {
     padding: 12px 22px;
     font-size: 18px;
@@ -78,9 +90,10 @@ button {
 #noBtn {
     background: #f44336;
     color: white;
-    position: absolute;
+    position: fixed;
 }
 
+/* ===== POPUP ===== */
 #popup {
     display: none;
     position: fixed;
@@ -106,7 +119,7 @@ button {
 
 <body>
 
-<!-- Hearts -->
+<!-- ===== HEART GENERATOR ===== -->
 <script>
 for (let i = 0; i < 20; i++) {
     let heart = document.createElement("div");
@@ -118,9 +131,14 @@ for (let i = 0; i < 20; i++) {
 }
 </script>
 
+<!-- ===== MAIN CONTENT ===== -->
 <div class="box">
-    <!-- 🔴 REPLACE PHOTO LINK BELOW -->
-    <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Sanika">
+
+    <!-- INDIGO LOGO -->
+    <img src="indigo-logo.png" alt="Indigo Logo" class="logo">
+
+    <!-- OPTIONAL PHOTO (keep or remove) -->
+    <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Sanika" class="profile">
 
     <h2>
         Sanika ❤️  
@@ -129,9 +147,10 @@ for (let i = 0; i < 20; i++) {
     </h2>
 
     <button id="yesBtn" onclick="showLove()">അതെ 💖</button>
-    <button id="noBtn" ontouchstart="moveNo()">ഇല്ല 💔</button>
+    <button id="noBtn" ontouchstart="moveNo()" onmouseover="moveNo()">ഇല്ല 💔</button>
 </div>
 
+<!-- ===== POPUP ===== -->
 <div id="popup">
     <div class="popup-content">
         <h2>അഭിനന്ദനങ്ങൾ 🎉❤️</h2>
@@ -144,11 +163,19 @@ for (let i = 0; i < 20; i++) {
     </div>
 </div>
 
+<!-- ===== LOGIC ===== -->
 <script>
 function moveNo() {
     const btn = document.getElementById("noBtn");
-    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    btn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+
+    const maxX = window.innerWidth - btn.offsetWidth;
+    const maxY = window.innerHeight - btn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
 }
 
 function showLove() {
