@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanika ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(#ff758c, #ff7eb3);
+    overflow: hidden;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: red;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+.box {
+    background: white;
+    padding: 22px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.box img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff4d6d;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #e91e63;
+    font-size: 20px;
+}
+
+button {
+    padding: 12px 22px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#yesBtn {
+    background: #4CAF50;
+    color: white;
+}
+
+#noBtn {
+    background: #f44336;
+    color: white;
+    position: absolute;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    width: 85%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Hearts -->
+<script>
+for (let i = 0; i < 20; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<div class="box">
+    <!-- 🔴 REPLACE PHOTO LINK BELOW -->
+    <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Sanika">
+
+    <h2>
+        Sanika ❤️  
+        <br>
+        നിനക്ക് എന്നെ സ്നേഹിക്കാമോ? 🥰
+    </h2>
+
+    <button id="yesBtn" onclick="showLove()">അതെ 💖</button>
+    <button id="noBtn" ontouchstart="moveNo()">ഇല്ല 💔</button>
+</div>
+
+<div id="popup">
+    <div class="popup-content">
+        <h2>അഭിനന്ദനങ്ങൾ 🎉❤️</h2>
+        <p>
+            Sanika 🥰  
+            <br>
+            എന്റെ ഹൃദയം ഇനി നിന്റെതാണ് ❤️  
+            ഞാൻ നിന്നെ വളരെ സ്നേഹിക്കുന്നു 💖
+        </p>
+    </div>
+</div>
+
+<script>
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    btn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+}
+
+function showLove() {
+    document.getElementById("popup").style.display = "flex";
+}
+</script>
+
+</body>
+</html>
